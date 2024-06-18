@@ -37,7 +37,7 @@ import { useFightersListStore } from '@/app/stores/fightersList'
 const route = useRoute()
 const router = useRouter()
 const FightersListStore = useFightersListStore()
-const fighterId = +route.params.id || 0
+const fighterId = +route.params.id
 const fighter = FightersListStore.showFighterDetails(fighterId)
 const fullName = `${fighter?.surname ? fighter?.surname : ''} ${fighter?.name ? fighter?.name : ''} ${fighter?.patronymic ? fighter?.patronymic : ''}`
 const club = `${fighter?.club ? fighter.club : 'Без клуба'}`

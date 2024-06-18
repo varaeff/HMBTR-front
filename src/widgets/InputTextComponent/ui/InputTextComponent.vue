@@ -27,11 +27,11 @@ import { parseInput } from '@/features'
 const props = defineProps({
   placeholder: {
     type: String,
-    reqired: true
+    required: true
   },
   width: {
     type: Number,
-    reqired: false,
+    required: false,
     default: 100
   },
   value: {

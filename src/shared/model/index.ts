@@ -3,7 +3,7 @@ export interface Fighter {
   name: string
   surname: string
   patronymic?: string
-  birthday?: Date
+  birthday?: Date | null
   country: string
   city: string
   club?: string

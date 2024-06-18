@@ -18,7 +18,7 @@ export const useFightersListStore = defineStore({
       {
         id: 0,
         name: 'боец не найден',
-        surname: 'боец не найден',
+        surname: '',
         country: 'боец не найден',
         city: 'боец не найден',
         club: 'боец не найден',
@@ -56,11 +56,12 @@ export const useFightersListStore = defineStore({
   }),
   actions: {
     showFighterDetails(this: FightersListState, id: number) {
-      return this.fighters.find((fighter) => fighter.id === id)
+      const fighter = this.fighters.find((fighter) => fighter.id === id)
+      return fighter ? fighter : this.fighters[0]
     }
   },
   getters: {
-    filteredFightersList(state: FightersListState) {
+    filteredFightersList(state) {
       return state.fighters
         .filter((fighter) => fighter.id !== 0)
         .filter(
@@ -70,6 +71,13 @@ export const useFightersListStore = defineStore({
             fighter.city.toLowerCase().includes(state.seachString.toLowerCase()) ||
             (fighter.club && fighter.club.toLowerCase().includes(state.seachString.toLowerCase()))
         )
+    },
+    getMaxId(state) {
+      return (
+        state.fighters.reduce((maxId, fighter) => {
+          return Math.max(maxId, fighter.id)
+        }, 0) + 1
+      )
     }
   }
 })
